@@ -33,11 +33,6 @@ sap.ui.define([
                 if (bIsNavigationArrow) {
                     this.oRouter.navTo(this.currentRouteName, { layout: sLayout, student: this.currentStudent }, true);
                 }
-            },
-
-            onExit: function () {
-                console.log("Controller is exiting"); 
-                this.oRouter.detachRouteMatched(this.onRouteMatched, this);
             }
         });
     });

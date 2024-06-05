@@ -225,14 +225,7 @@ sap.ui.define([
             var bFooterVisible = oJsonModel.getProperty("/FooterVisible");
             oJsonModel.setProperty("/FooterVisible", false);
             this.getView().getModel("students").refresh(true);
-        },
-
-        onExit: function () {
-            var oRouter = this.oRouter;
-            // var oListRoute = oRouter.getRoute("list");
-            // this.oRouter.getRoute("list").detachPatternMatched(this._onStudentMatched, this);
-            // this.oRouter.getRoute("detail").detachPatternMatched(this._onStudentMatched, this);
-        },
+        }
 
     });
 });
