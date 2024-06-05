@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZSTUDENT_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Student" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="StudentID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="StudentName" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dob" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DOB" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="StudentToUni" Relationship="ZSTUDENT_SRV.StudentToUni" FromRole="FromRole_StudentToUni" ToRole="ToRole_StudentToUni"/>
+            </EntityType>
+            <EntityType Name="StudentUni" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="UniId"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="StudentID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UniId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UniID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UniName" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="UniName" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="StudentToUni" sap:content-version="1">
+                <End Type="ZSTUDENT_SRV.Student" Multiplicity="1" Role="FromRole_StudentToUni"/>
+                <End Type="ZSTUDENT_SRV.StudentUni" Multiplicity="*" Role="ToRole_StudentToUni"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_StudentToUni">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_StudentToUni">
+                        <PropertyRef Name="Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZSTUDENT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="StudentSet" EntityType="ZSTUDENT_SRV.Student" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="StudentUniSet" EntityType="ZSTUDENT_SRV.StudentUni" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="StudentToUniSet" Association="ZSTUDENT_SRV.StudentToUni" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="StudentSet" Role="FromRole_StudentToUni"/>
+                    <End EntitySet="StudentUniSet" Role="ToRole_StudentToUni"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://hana.ciber.vn:8001/sap/opu/odata/sap/ZSTUDENT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://hana.ciber.vn:8001/sap/opu/odata/sap/ZSTUDENT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,134 @@
+<mvc:View
+    controllerName="studentproject.controller.List"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <f:DynamicPage
+        id="dynamicPageId"
+        toggleHeaderOnTitleClick="false"
+    >
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle id="DynamicPageTitle">
+                <f:heading>
+                    <Title
+                        id="Title"
+                        text="Student List"
+                    />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- DynamicPage Content -->
+        <f:content>
+            <VBox
+                id="Vbox"
+                fitContainer="true"
+            >
+                <OverflowToolbar
+                    id="OverflowToolbar"
+                    class="sapFDynamicPageAlignContent"
+                >
+                    <ToolbarSpacer id="ToolbarSpacer" />
+                    <SearchField
+                        id="SearchField"
+                        liveChange=".onSearch"
+                        width="17.5rem"
+                    />
+                    <OverflowToolbarButton
+                        id="OverflowToolbarButtonsAdd"
+                        icon="sap-icon://add"
+                        text="Add"
+                        type="Transparent"
+                        press=".onAdd"
+                    />
+                    <OverflowToolbarButton
+                        id="OverflowToolbarButtonsSort"
+                        icon="sap-icon://sort"
+                        text="Sort"
+                        type="Transparent"
+                        press=".onSort"
+                    />
+                    <OverflowToolbarButton
+                        id="OverflowToolbarButtonsSave"
+                        icon="sap-icon://save"
+                        text="Save"
+                        type="Transparent"
+                        press=".showDialog"
+                    />
+                </OverflowToolbar>
+                <Table
+                    id="studentsTable"
+                    inset="false"
+                    items="{students>/results}"
+                    class="sapFDynamicPageAlignContent"
+                    width="auto"
+                >
+                    <columns>
+                        <Column
+                            id="Column1"
+                            width="12em"
+                        >
+                            <Text
+                                id="Text1"
+                                text="Name"
+                            />
+                        </Column>
+                        <Column
+                            id="Column2"
+                            hAlign="End"
+                        >
+                            <Text
+                                id="Text2"
+                                text="DateOfBirth"
+                            />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem
+                            id="ColumnListItem"
+                            type="Navigation"
+                            press=".onListItemPress"
+                        >
+                            <cells>
+                                <ObjectIdentifier
+                                    id="ObjectIdentifier"
+                                    title="{students>Id}"
+                                    text="{students>Name}"
+                                />
+                                <ObjectNumber
+                                    id="ObjectNubmer"
+                                    number="{
+										parts:[
+											{path:'students>Dob'}
+										],
+										type: 'sap.ui.model.type.Date',
+										formatOptions: { pattern: 'dd.MM.yyyy', strictParsing: true }
+									}"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </f:content>
+
+        <!-- DynamicPage Footer -->
+        <f:footer>
+            <OverflowToolbar id="OverflowToolbar2">
+                <ToolbarSpacer id="ToolbarSpacer2" />
+                <Button
+                    id="ButtonAccept"
+                    type="Accept"
+                    text="Accept"
+                />
+                <Button
+                    id="ButtonReject"
+                    type="Reject"
+                    text="Reject"
+                />
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

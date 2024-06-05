@@ -1,0 +1,14 @@
+<mvc:View
+    controllerName="studentproject.controller.App"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.f"
+>
+    <FlexibleColumnLayout
+        id="flexibleColumnLayout"
+        backgroundDesign="Solid"
+        stateChange="onStateChanged"
+        layout="{/layout}"
+    />
+</mvc:View>

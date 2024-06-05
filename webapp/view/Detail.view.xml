@@ -1,0 +1,140 @@
+<mvc:View
+    xmlns:table="sap.ui.table"
+    controllerName="studentproject.controller.Detail"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <ObjectPageLayout
+        id="ObjectPageLayout"
+        showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="false"
+        headerContentPinnable="true"
+        isChildPage="true"
+        upperCaseAnchorBar="false"
+        showFooter="{= ${students>/FooterVisible}}"
+    >
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle id="ObjectPageDynamicHeaderTitle">
+                <expandedHeading>
+                    <m:Title
+                        id="Title"
+                        text="{students>Name} - {students>Id}"
+                        wrapping="true"
+                        class="sapUiSmallMarginEnd"
+                    />
+                </expandedHeading>
+                <actions>
+                    <m:ToggleButton
+                        id="EditButton"
+                        text="Edit"
+                        press="onEdit"
+                    />
+                    <m:Button
+                        id="DeleteButton"
+                        text="Delete"
+                        type="Transparent"
+                    />
+                    <m:Button
+                        id="CopyButton"
+                        text="Copy"
+                        type="Transparent"
+                    />
+                    <m:Button
+                        id="ActionButton"
+                        icon="sap-icon://action"
+                        type="Transparent"
+                    />
+                    <m:Button
+                        id="SaveButton"
+                        text="Save"
+                        type="Transparent"
+                        press=".showDialog"
+                    />
+                </actions>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+        <sections>
+            <ObjectPageSection id="ObjectPageSection">
+                <ObjectPageSubSection
+                    id="ObjectPageSubSection"
+                    title="Sub Section 1"
+                >
+                    <blocks>
+                        <m:Table
+                            id="UniTable"
+                            items="{students>StudentToUni/results}"
+                        >
+                            <m:columns>
+                                <m:Column id="IDColumn">
+                                    <m:Text
+                                        id="columnTextID"
+                                        text="ID"
+                                    />
+                                </m:Column>
+                                <m:Column id="UniIDColumn">
+                                    <m:Text
+                                        id="columnUniID"
+                                        text="UniID"
+                                    />
+                                </m:Column>
+                                <m:Column id="NameColumn">
+                                    <m:Text
+                                        id="columnTextName"
+                                        text="Name"
+                                    />
+                                </m:Column>
+
+                                <!-- Add more columns as necessary -->
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem id="ColumnListItem">
+                                    <m:cells>
+                                        <m:Text
+                                            id="IDText"
+                                            text="{students>Id}"
+                                        />
+                                        <m:Text
+                                            id="UniIDText"
+                                            text="{students>UniId}"
+                                        />
+
+                                        <m:Input
+                                            id="NameInput"
+                                            value="{students>UniName}"
+                                            editable="{= ${students>/editable}}"
+                                            showValueHelp="true"
+                                            valueHelpRequest=".onValueHelpRequest"
+                                        />
+
+                                        <!-- Bind more fields as necessary -->
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+                    </blocks>
+                </ObjectPageSubSection>
+            </ObjectPageSection>
+        </sections>
+        <footer>
+            <m:Toolbar> 
+             <m:ToolbarSpacer />
+                <m:Button
+                    id="AcceptButton"
+                    text="Approve"
+                    type="Accept"
+                    press="onMessagePress"
+                />
+                <m:Button
+                    id="RejectButton"
+                    text="Reject"
+                    type="Reject"
+                    press="onRejectPress"
+                />
+            </m:Toolbar>
+        </footer>
+    </ObjectPageLayout>
+</mvc:View>
