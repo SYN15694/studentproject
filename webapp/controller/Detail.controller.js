@@ -121,7 +121,7 @@ sap.ui.define([
         onValueHelpRequest: async function (oEvent) {
             var oBusyDialog = this.getOwnerComponent()._busyDialog;
 
-            oBusyDialog.open();
+
             // provide your logic here, like opening a dialog
             this._uni = oEvent.getParameter("id");
             this._uni = this._uni.split("-");
@@ -138,14 +138,16 @@ sap.ui.define([
             var oModel = this.getOwnerComponent().getModel("MaVatTu");
             var oComponent = this.getOwnerComponent();
             if (!oModel) {
+                oBusyDialog.open();
                 try {
                     oModel = await oComponent.getMaVatTuSH();
                 } catch (e) {
                     console.error(e);
                     // handle error if needed
                 }
+                oBusyDialog.close();
             };
-            oBusyDialog.close();
+
 
             this.searchHelpDialog.setModel(oModel);
 
