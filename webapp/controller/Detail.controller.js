@@ -61,10 +61,12 @@ sap.ui.define([
                 });
             });
 
+            var date = new Date(1998, 4, 8, 7, 0, 0);
+
             var oNewEntry = {
                 Id: itemToAdd.Id,
                 Name: itemToAdd.Name,
-                Dob: itemToAdd.Dob,
+                Dob: date,
                 StudentToUni: aStudentToUnis
             };
 
